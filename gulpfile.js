@@ -15,53 +15,53 @@ const include = require('gulp-include');
 const svgstore = require('gulp-svgstore');
 
 function sprites() {
-  return src('docs/images/sprite/*.svg')
+  return src('app/images/sprite/*.svg')
     .pipe(svgstore())
-    .pipe(dest('docs/images'))
+    .pipe(dest('app/images'))
 }
 
 function pages() {
-  return src('docs/pages/*.html')
+  return src('app/pages/*.html')
     .pipe(include({
-      includePaths: 'docs/components'
+      includePaths: 'app/components'
     }))
-    .pipe(dest('docs'))
+    .pipe(dest('app'))
     .pipe(browserSync.stream())
 }
 
 function fonts() {
-  return src('docs/fonts/*.ttf')
+  return src('app/fonts/*.ttf')
     .pipe(ttf2woff2())
-    .pipe(dest('docs/fonts'))
+    .pipe(dest('app/fonts'))
 }
 
 
 function images() {
-  return src(['docs/images/src/*.*', '!docs/images/src/*.svg'])
-    .pipe(newer('docs/images'))
+  return src(['app/images/src/*.*', '!app/images/src/*.svg'])
+    .pipe(newer('app/images'))
     .pipe(avif({ quality: 50 }))
 
-    .pipe(src('docs/images/src/*.*'))
-    .pipe(newer('docs/images'))
+    .pipe(src('app/images/src/*.*'))
+    .pipe(newer('app/images'))
     .pipe(webp())
 
-    .pipe(src('docs/images/src/*.*'))
-    .pipe(newer('docs/images'))
+    .pipe(src('app/images/src/*.*'))
+    .pipe(newer('app/images'))
     .pipe(imagemin())
 
-    .pipe(dest('docs/images'))
+    .pipe(dest('app/images'))
 }
 
 
 function styles() {
-  return src('docs/scss/style.scss')
+  return src('app/scss/style.scss')
     .pipe(scss({ outputStyle: 'compressed' }))
     .pipe(autoprefixer({
       overrideBrowserslist: ['last 10 versions'],
       cascade: false
     }))
     .pipe(concat('style.min.css'))
-    .pipe(dest('docs/css'))
+    .pipe(dest('app/css'))
     .pipe(browserSync.stream());
 }
 
@@ -69,26 +69,26 @@ function scripts() {
   return src([
     'node_modules/swiper/swiper-bundle.js',
     'node_modules/nouislider/dist/nouislider.js',
-    'docs/js/main.js'
+    'app/js/main.js'
   ])
     .pipe(concat('main.min.js'))
     .pipe(uglify())
-    .pipe(dest('docs/js'))
+    .pipe(dest('app/js'))
     .pipe(browserSync.stream())
 }
 
 function watching() {
   browserSync.init({
     server: {
-      baseDir: 'docs/'
+      baseDir: 'app/'
     }
   });
-  watch(['docs/scss/*.scss'], styles)
-  watch(['docs/images/src'], images)
-  watch(['docs/images/sprite'], sprites)
-  watch(['docs/pages/*', 'docs/components/*'], pages)
-  watch(['docs/js/main.js'], scripts)
-  watch(['docs/*.html']).on('change', browserSync.reload)
+  watch(['app/scss/*.scss'], styles)
+  watch(['app/images/src'], images)
+  watch(['app/images/sprite'], sprites)
+  watch(['app/pages/*', 'app/components/*'], pages)
+  watch(['app/js/main.js'], scripts)
+  watch(['app/*.html']).on('change', browserSync.reload)
 }
 
 function cleanDist() {
@@ -98,12 +98,12 @@ function cleanDist() {
 
 function building() {
   return src([
-    'docs/*.html',
-    'docs/js/main.min.js',
-    'docs/css/style.min.css',
-    'docs/images/*.*',
-    'docs/fonts/*.woff2'
-  ], { base: 'docs' })
+    'app/*.html',
+    'app/js/main.min.js',
+    'app/css/style.min.css',
+    'app/images/*.*',
+    'app/fonts/*.woff2'
+  ], { base: 'app' })
     .pipe(dest('dist'))
 }
 
