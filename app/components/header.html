@@ -1,0 +1,133 @@
+<header class="header">
+  <div class="container">
+
+    <div class="header__inner">
+
+      <button class="menu__btn">
+        <svg width="30" height="19">
+          <use xlink:href="images/sprite.svg#mobile-btn"></use>
+        </svg>
+      </button>
+      
+      <div class="header__logo">
+        <a class="logo" href="http://localhost:3000/"> <img src="images/src/logo.svg" alt="logo"> </a>
+      </div>
+
+      <ul class="header__lang header__lang--none">
+        <li class="header__lang-item"> <a href="#" class="header__lang-link header__lang--active">EN</a>/ </li>
+        <li class="header__lang-item"> <a href="#" class="header__lang-link ">UA</a> </li>
+      </ul>
+
+      <nav class="menu">
+        <ul class="menu__list">
+          <li class="menu__item"> <a href="http://localhost:3000/catalog.html" class="menu__link">catalog</a> </li>
+          <li class="menu__item"> <a href="http://localhost:3000/collection.html" class="menu__link">collections</a>
+          </li>
+          <li class="menu__item"> <a href="http://localhost:3000/blog.html" class="menu__link">about</a> </li>
+          <li class="menu__item"> <a href="http://localhost:3000/appointment.html" class="menu__link">book an
+              appointment</a> </li>
+          <li class="menu__item"> <a href="#" class="menu__link">contact</a> </li>
+        </ul>
+      </nav>
+
+      <ul class="header__actions">
+        <li class="header__actions-item"> <a href="#" class="header__actions-link"> <svg width="24" height="24">
+              <use xlink:href="images/sprite.svg#user"></use>
+            </svg> </a> </li>
+        <li class="header__actions-item"> <a href="#" class="header__actions-link"> <svg width="24" height="22">
+              <use xlink:href="images/sprite.svg#wishlist"></use>
+            </svg> </a> </li>
+        <li class="header__actions-item"> <a href="#" class="header__actions-link open-modal"> <svg svg width="24"
+              height="24">
+              <use xlink:href="images/sprite.svg#shopping-bag"></use>
+            </svg> </a> </li>
+      </ul>
+
+    </div>
+
+
+    <div class="modal" aria-hidden="true">
+      <div class="modal__overlay"> </div>
+      <div class="modal__content" role="dialog" aria-modal="true">
+        <div class="checkout__details-items">
+          <div class="checkout__details-itemsline">
+            <p class="checkout__details-quantity">2 items in bag</p> <button class="checkout__details-del close-modal"
+              aria-label="close modal window"> <svg width="18" height="18">
+                <use xlink:href="images/sprite.svg#order-del"></use>
+              </svg> </button>
+          </div>
+          <div class="checkout__item">
+            <picture>
+              <source srcset='images/order-1.avif' type='image/avif'>
+              <source srcset='images/order-1.webp' type='image/webp'> <img class="checkout__item-img"
+                src='images/order-1.png' alt='Alt text'>
+            </picture>
+            <div class="checkout__item-box">
+              <p class="checkout__item-title">naomi</p>
+              <dl class="checkout__item-list">
+                <div class="checkout__item-listbox">
+                  <dt class="checkout__item-term">size:</dt>
+                  <dd class="checkout__item-definition">s</dd>
+                </div>
+                <div class="checkout__item-listbox">
+                  <dt class="checkout__item-term">color:</dt>
+                  <dd class="checkout__item-definition">ivory</dd>
+                </div>
+                <div class="checkout__item-listbox">
+                  <dt class="checkout__item-term checkout__item-termnone">Item subtotal:</dt>
+                  <dd class="checkout__item-definition">€ 2,600</dd>
+                </div>
+              </dl> <button class="checkout__item-del"> <svg width="16" height="20">
+                  <use xlink:href="images/sprite.svg#item-del"></use>
+                </svg> </button>
+            </div>
+          </div>
+          <div class="checkout__item">
+            <picture>
+              <source srcset='images/order-2.avif' type='image/avif'>
+              <source srcset='images/order-2.webp' type='image/webp'> <img class="checkout__item-img"
+                src='images/order-2.png' alt='Alt text'>
+            </picture>
+            <div class="checkout__item-box">
+              <p class="checkout__item-title">sabine</p>
+              <dl class="checkout__item-list">
+                <div class="checkout__item-listbox">
+                  <dt class="checkout__item-term">size:</dt>
+                  <dd class="checkout__item-definition">38</dd>
+                </div>
+                <div class="checkout__item-listbox">
+                  <dt class="checkout__item-term">color:</dt>
+                  <dd class="checkout__item-definition">ivory</dd>
+                </div>
+                <div class="checkout__item-listbox">
+                  <dt class="checkout__item-term checkout__item-termnone">Item subtotal:</dt>
+                  <dd class="checkout__item-definition">€ 200</dd>
+                </div>
+              </dl> <button class="checkout__item-del"> <svg width="16" height="20">
+                  <use xlink:href="images/sprite.svg#item-del"></use>
+                </svg> </button>
+            </div>
+          </div>
+        </div>
+        <div class="order">
+          <dl class="order__list">
+            <div class="order__list-box">
+              <dt class="order__list-term">Subtotal:</dt>
+              <dd class="order__list-definition">€2, 800</dd>
+            </div>
+            <div class="order__list-box">
+              <dt class="order__list-term">Shipping:</dt>
+              <dd class="order__list-definition">free</dd>
+            </div>
+            <div class="order__list-box">
+              <dt class="order__list-term">Total:</dt>
+              <dd class="order__list-definition">€ 2,800</dd>
+            </div>
+          </dl>
+          <div class="order__change-buttons"> <a class="order__change" href="#">keep shopping</a> <a
+              class="order__change-now" href="#">buy it now</a> </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</header>
