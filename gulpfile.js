@@ -1,5 +1,21 @@
 const { src, dest, watch, series, parallel } = require('gulp');
 
+// Ensure gulp-webp uses system cwebp with JPEG support (Homebrew installs)
+const fs = require('fs');
+if (!process.env.CWEBP_BIN || !process.env.CWEBP_BINARY) {
+  const candidates = [
+    '/opt/homebrew/bin/cwebp',
+    '/usr/local/bin/cwebp'
+  ];
+  const found = candidates.find(p => {
+    try { return fs.existsSync(p); } catch { return false; }
+  });
+  if (found) {
+    process.env.CWEBP_BIN = found;
+    process.env.CWEBP_BINARY = found;
+  }
+}
+
 const scss = require('gulp-sass')(require('sass'));
 const browserSync = require('browser-sync').create();
 const concat = require('gulp-concat');
@@ -10,6 +26,7 @@ const imagemin = require('gulp-imagemin');
 const webp = require('gulp-webp');
 const avif = require('gulp-avif');
 const newer = require('gulp-newer');
+const plumber = require('gulp-plumber');
 const ttf2woff2 = require('gulp-ttf2woff2');
 const include = require('gulp-include');
 const svgstore = require('gulp-svgstore');
@@ -38,12 +55,14 @@ function fonts() {
 
 function images() {
   return src(['app/images/src/*.*', '!app/images/src/*.svg'])
+    .pipe(plumber())
     .pipe(newer('app/images'))
     .pipe(avif({ quality: 50 }))
 
     .pipe(src('app/images/src/*.*'))
     .pipe(newer('app/images'))
-    .pipe(webp())
+    // Temporarily disable webp conversion to avoid cwebp JPEG support issue
+    // .pipe(webp())
 
     .pipe(src('app/images/src/*.*'))
     .pipe(newer('app/images'))
